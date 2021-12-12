@@ -1,5 +1,6 @@
 `include "or.v"
 
+/*
 module or_tb;
   reg a, b;
   wire out;
@@ -16,3 +17,16 @@ module or_tb;
   $dumpvars();
     end
 endmodule
+*/
+
+module or16_tb;
+  reg [15:0] a = 16'b0000000000000001;
+  reg [15:0] b = 16'b0000000000000000;
+  wire [15:0] out;
+
+  Or16 u1(out, a, b);
+
+  initial begin
+    $monitor("a=%b, b=%b, out=%b", a, b, out);
+  end
+endmodule 
