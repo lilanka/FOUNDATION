@@ -3,6 +3,8 @@
 *.vcd
 *.o
 
-.\#*
-*~
-*.bak
+a.out
+.*.swp
+run
+out
+obj_dir
