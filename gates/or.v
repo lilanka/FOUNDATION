@@ -30,6 +30,7 @@ module Or16(out, a, b);
   Or d15(out[15], a[15], b[15]);
 endmodule 
 
+// 8-way implementation
 module Or8Way(out, a);
   input [7:0] a;
   output out;
