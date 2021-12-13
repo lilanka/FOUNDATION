@@ -29,3 +29,13 @@ module Or16(out, a, b);
   Or d14(out[14], a[14], b[14]);
   Or d15(out[15], a[15], b[15]);
 endmodule 
+
+module Or8Way(out, a);
+  input [7:0] a;
+  output out;
+
+  Or d0(out, a[0], a[1]);
+  Or d1(out, a[2], a[3]);
+  Or d2(out, a[4], a[5]);
+  Or d3(out, a[6], a[7]);
+endmodule

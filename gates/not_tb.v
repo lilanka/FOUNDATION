@@ -1,5 +1,4 @@
 `include "not.v"
-/*
 module not_tb;
   reg a; 
   wire out;
@@ -14,8 +13,8 @@ module not_tb;
   $dumpvars();
     end
 endmodule
-*/
 
+/*
 module not16_tb;
   reg [15:0] a = 16'b0000000000000001;
   wire [15:0] out;
@@ -26,3 +25,4 @@ module not16_tb;
     $monitor("a=%b, out=%b", a, out);
   end
 endmodule
+*/
