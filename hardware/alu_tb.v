@@ -2,7 +2,7 @@
 module alu_tb;
   reg [15:0] a = 16'd5;
   reg [15:0] b = 16'd6;
-  reg [5:0] c = 6'b001101; // control signal
+  reg [5:0] c = 6'b000000; // control signal
 
   wire [15:0] out;
   wire zr, ng;
