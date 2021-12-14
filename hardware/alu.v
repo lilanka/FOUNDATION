@@ -57,10 +57,10 @@ module Alu16(out, zr, ng, a, b, c);
     endcase
 
     // check zr and ng
-    if (out==1'b0) begin
+    if (out==16'd0) begin
       zr = 1'b1;
     end
-    if (out==1'b1) begin
+    if (out[15]==1'b1) begin
       ng = 1'b1;
     end
   end
