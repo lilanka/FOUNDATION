@@ -1,11 +1,11 @@
 module Dff(output reg q, qb, input in, clk);
+  initial begin
+    q = 1'b0;
+    qb = 1'b1;
+  end
+
   always @ (posedge clk) begin
-    if (in==1'b0) begin
-      q = 0;
-    end
-    else 
-      q = 1;
-    end
+    q = in;
     qb = ~q;
   end
 endmodule
