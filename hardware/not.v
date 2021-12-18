@@ -1,5 +1,3 @@
-`include "param.v"
-
 module Not(output reg out, input a);
   always @ (a) begin
     if (a==1'b0) begin
