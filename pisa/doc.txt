@@ -1,0 +1,68 @@
+P16 ISA
+=======
+
+Heard about Harvard?. Maybe similar to RISC-V. Look at 
+https://msyksphinz-self.github.io/riscv-isadoc/html/index.html
+
+FORMATS
+-------
+
+R3-type:
+
+    +-------------------------------------+
+    | opcode  |   r0  | r1  |   0   |  r3 |
+    +-------------------------------------+
+    15      12 11    9 8   6 5     3 2   0
+
+R2I-type:
+
+    +-------------------------------------+
+    | opcode  |   r0  | r1  |     Imm     | 
+    +-------------------------------------+
+    15      12 11    9 8   6 5           0
+
+RI-type:
+
+    +-------------------------------------+
+    | opcode  |   r0  |       UImm        | - U: unsigned
+    +-------------------------------------+
+    15      12 11    9 8                 0
+
+
+INSTRUCTIONS
+------------
+
+------------------------------------------------------------------------------------------------------------------------------------------
+command | type    | opcode  | assembly          | action
+------------------------------------------------------------------------------------------------------------------------------------------
+
+add     | R3      | 0000    | add r0, r1, r3    | add r1, r2, stores in r0 
+sub     | R3      | 0001    | sub r0, r1, r3    | sub r1, r2, stores in r0
+nand    | R3      | 0010    | nand r0, r1, r3   | nand r1, r2, stores in r0
+mul     | R3      | 0011    | mul r0, r1, r3    | mul r1, r2, stores in r0
+addi    | R2I     | 0100    | addi r0, r1, imm  | add r1, imm, stores in r0 
+subi    | R2I     | 0101    | subi r0, r1, imm  | sub r1, imm, stores in r0 
+muli    | R2I     | 0110    | muli r0, r1, imm  | mul r1, imm, stores in r0 
+and     | R3      | 0111    | and r0, r1, r3    | and r1, r2, stores in r0
+or      | R3      | 1000    | or r0, r1, r3     | or r1, r2, stores in r0
+lw      | R2I     | 1001    | lw r0, r1, imm    | load imm (r1) from memory to r0
+sw      | R2I     | 1010    | sw r0, r1, imm    | store imm (r0) from reg to memory (r1)
+beq     | R2I     | 1011    | beq r0, rq, imm   | if contents in r0, r1 same, branch to the address PC+1+imm (PC: addr of beq instruction)
+jmp     | R2I     | 1100    | jmp r0, r1        | branch to the address in r1, store PC+1 in r0 (PC: addr of jmp instruction)
+lui     | RI      | 1101    | lui r0, imm       | put 10-bits of the 16-bit imm into the 10-bits of r0 (bottom 6-bits 0)
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+P16 ASSEMBLY LANGUAGE
+---------------------
+
+FORMAT
+
+  label:<ws>opcode<ws>f0, f1, f2<ws>// comment
+
+  -> ws: whitespace.
+  -> put ws or comma (or both) between fields.
+  -> register value fields can be given as "decimal" number. Or number followed by "r" (r0, r1,...).
+  -> immediate values can be given by decimal, octal(0) or hexadecimal(0x).
+
+** other things will be added as I write the assembler.
