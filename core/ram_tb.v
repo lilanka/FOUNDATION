@@ -3,11 +3,11 @@
 module ram_tb;
   reg [15:0] in;
   reg ld, clk;
-  reg [5:0] addr;
+  reg [13:0] addr;
 
   wire [15:0] out;
 
-  Ram64 u0(out, in, addr, clk, ld);
+  Ram16K u0(out, in, addr, clk, ld);
 
   initial begin
     clk=0;
