@@ -1,8 +1,7 @@
 P16 ISA
 =======
 
-Heard about Harvard?. Maybe similar to RISC-V. Look at 
-https://msyksphinz-self.github.io/riscv-isadoc/html/index.html
+Maybe similar to RISC-V. Look at https://msyksphinz-self.github.io/riscv-isadoc/html/index.html
 
 FORMATS
 -------
