@@ -1,10 +1,13 @@
 `include "ram.v"
 `include "alu.v"
+`include "pc.v"
 
-module Cpu(outM, wrM, addrM, pc, I, ins, clk, rst);
-  input [15:0] inM, I;
-  input clk, rst;
+  output        wr;
 
-  output [15:0] outM;
-  output [14:0] addrM, pc;
-  output wrM;
+  wire [15:0] d_in, d_out, i_out; 
+              
+ 
+  Mux16 g8(i_out, 
+  Alu16 alu(alu_out, zr, ng, d_out, i_out, I[14:11]); 
+  
+endmodule
