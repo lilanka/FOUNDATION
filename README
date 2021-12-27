@@ -1,7 +1,10 @@
-PARVA-COMPUTATRUM
+FOUNDATION 
 
-A small computer system from ground up (0->1). 
-Everything from logic gates to application layer. 
+You have read https://en.wikipedia.org/wiki/Foundation_series?
+No connection to that. This is a series of systems that builds 
+a full computer using first principles. Currently developing in
+my spare time.
 
-core/ - Has some gate implementation
-zuss/ - RISC-V processor core
+core/    - Has some gate implementations
+kythera/ - RISC-V processor
+kas/     - Assembler

@@ -1,6 +1,3 @@
-// RISC-V based Register file
-// see https://riscv.org/wp-content/uploads/2017/05/riscv-spec-v2.2.pdf
-
 module ZUSS_REG_FILE(
   input   wire [4:0]  r_addr1, r_addr2,     // addr of registers (read)
   input   wire [4:0]  w_addr,               // register writing addr
