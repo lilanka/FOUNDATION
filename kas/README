@@ -1,3 +1,7 @@
 KAS (Kythera ASsembler)
+=======================
 
-$ ./assembler.py <fname> <isa>
+You will need a D compiler.
+
+$ gdc assembler.d
+$ ./a.out <.asm file>
