@@ -25,12 +25,51 @@ private string r2;
 private string r3;
 private string cmnt;
 
+struct registermap {
+	string reg;
+	string map;
+}
+
+private registermap[] reg_map;
+
 struct symtab {
 	string lab;		
 	ushort val;
 }
 
 private symtab[] stab;
+
+enum R_INS = ["add","sub", "sll", 
+							"sltu", "xor", "srl", 
+							"sra", "or", "and",
+							"addw", "subw", "sllw",
+							"slrw", "sraw", "mul",
+							"mulh", "mulu", "mulsu",
+							"div", "divu", "rem",
+							"remu"];
+
+enum I_INS = ["addi", "lb", "lw",
+							"ld", "lbu", "lhu",
+							"lwu", "fence", "fence.i", 
+							"slli", "slti", "sltiu", 
+							"xori", "slri", "srai",
+							"ori", "andi", "addiw",
+							"slliw", "srliw", "sraiw", 
+							"jalr", "ecall", "ebreak", 
+							"CSRRW", "CSRRS","CSRRC", 
+							"CSRRWI", "CSRRSI", "CSRRCI"];
+
+enum S_INS = ["sw", "sb", "sh", "sd"];
+
+enum U_INS = ["auipc", "lui"];
+
+enum UJ_INS = ["jal"];
+
+enum PSEUDO_INS = [	"beqz", "bnez", "li", 
+										"mv", "j", "jr", 
+										"la", "neg", "nop", 
+										"not", "ret", "seqz", 
+										"snez", "bgt", "ble"];
 
 private void error(string err) {
 	stderr.writeln("kas: " ~ to!string(line_no + 1) ~ ": " ~ err);
@@ -69,10 +108,14 @@ private void argcheck(bool arg) {
 		error("KAS: Not valid argument or 'nop' argument: " ~ op);
 }
 
+// instructions implementation ---------------------------------------
+
 private void nop() {
 	argcheck(r1 == "x0" && r2 == "x0" && r3 == "0");
 	pass_action(1, 0x00);
 }
+
+// instructions implementation end ----------------------------------
 
 private void process() {
 	// when putting label by itself or totally blank line
@@ -127,13 +170,24 @@ private void parse(string line) {
 
 	// todo: don't code as "label: op". If you do, add supportive module for that 
 	// I'm too lazy :)
+	// map registers 
+	for (size_t i=0; i < reg_map.length; i++) {
+		if (r1 == reg_map[i].reg) 
+			r1 = reg_map[i].map;
 
+		if (r2 == reg_map[i].reg) 
+			r2 = reg_map[i].map;
+
+		if (r3 == reg_map[i].reg) 
+			r3 = reg_map[i].map;
+	}		
+			
 	// for debugging
 	writeln(label);
 	writeln(op);
-	writeln(r3);
-	writeln(r2);
 	writeln(r1);
+	writeln(r2);
+	writeln(r3);
 	writeln(cmnt);
 }
 
@@ -149,8 +203,15 @@ private void assemble(string[] lines, string outfile) {
 		parse(lines[line_no]);
 		process();
 	}
-
 	file_write(outfile);
+}
+
+private void read_reg_file(string[] lines) {
+	for (int i = 0; i < lines.length; i++) {
+		auto split_reg = lines[i].findSplit(" ");
+		registermap new_reg_map = {split_reg[0], split_reg[2]};
+		reg_map ~= new_reg_map;
+	}	
 }
 
 void main(string[] args) {
@@ -161,6 +222,9 @@ void main(string[] args) {
 	string[] lines = splitLines(cast(string)read(args[1]));
 	auto split = args[1].findSplit(".asm");	// assembly code should be written in .asm file format
 	auto outfile = split[0] ~ ".kbin";			// The output binary format කැබින්   
+	
+	string[] registers = splitLines(cast(string)read("data/register_map.dat"));
+	read_reg_file(registers);	
 
 	assemble(lines, outfile);
 }
