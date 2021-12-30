@@ -115,6 +115,10 @@ private void nop() {
   pass_action(1, 0x00);
 }
 
+private void add() {
+  argcheck(!r1.empty && !r2.empty && !r3.empty);
+}
+
 // instructions implementation end ----------------------------------
 
 private void process() {
