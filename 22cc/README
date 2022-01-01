@@ -1,0 +1,14 @@
+22CC
+====
+
+A C compiler written in Haskell.
+
+WTD?
+---
+sc -> scanner (-> tokens) 
+-> parser (-> recorgnize tokens and generate AST and generate IR) 
+-> sementic analyser (-> type checking) 
+-> optimizer (-> optimizes IR) 
+-> instruction selector (-> maps IR into assembly) 
+-> code optimization (-> optimizes assembly code using control flow and data flow analysis, register allocation, etc)
+-> binary code generation (KAS will do this thing)
