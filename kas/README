@@ -1,7 +1,0 @@
-KAS (Kythera ASsembler)
-=======================
-
-You will need a D compiler.
-
-$ gdc assembler.d
-$ ./a.out <.asm file>

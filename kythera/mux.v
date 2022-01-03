@@ -3,7 +3,7 @@ module KY32_mux2x32(
   input  [31:0] a, b,
   input         s
 );
-  assign out = s ? a : b
+  assign out = s ? a : b;
 endmodule
 
 module KY32_mux4x32(
