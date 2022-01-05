@@ -6,6 +6,14 @@ module KY32_mux2x32(
   assign out = s ? a : b;
 endmodule
 
+module KY32_mux2x5(
+  output  [4:0]  out,
+  input   [4:0]  a, b,
+  input           s
+);
+  assign out = s ? a : b;
+endmodule 
+
 module KY32_mux4x32(
   output [31:0] out,
   input  [31:0] a, b, c, d,

@@ -1,4 +1,3 @@
 KyCC
 
-Kythera C compiler written in Haskell.
-Compiler outputs RISC-V assembly.
+A C compiler written in Haskell
