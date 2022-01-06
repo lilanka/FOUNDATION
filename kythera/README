@@ -13,3 +13,5 @@ lw, sw, beq, bne, lui, jal
 TODO
 ----
 * implement multiplication algorithm in arith/ (wallace tree maybe)
+* finish imem, dmem
+* fix the pc

@@ -1,5 +1,9 @@
 // single-cycle
 
+`include "cpu.v"
+`include "imem.v"
+`include "dmem.v"
+
 module kythera32(
   output  [31:0]  pc,       // program counter
   output  [31:0]  ins,      // instruction 
@@ -11,7 +15,7 @@ module kythera32(
   wire    [31:0]  data;        // data storing in dmem
   wire            datac;       // data memory write control
   
-  KY32_cpu    cpu(pc, datac, alu_o, data, clk, rst, ins);
-  //KY32_imem   imem(
-  //KY32_dmem   dmem(
+  KY32_cpu    mcpu(pc, datac, alu_o, data, clk, rst, ins);
+  KY32_imem   mimem(ins, pc);
+  KY32_dmem   mdmem(data, data, alu_o, clk, datac);
 endmodule

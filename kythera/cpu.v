@@ -4,6 +4,7 @@
 `include "arith/adder.v"
 `include "mux.v"
 `include "regfile.v"
+`include "ctrl.v"
 
 module KY32_cpu(
   output  [31:0]  pc,
@@ -51,7 +52,7 @@ module KY32_cpu(
   wire  [31:0]  jpc   = {incrpc[31:28],  
 
   // control unit 
-  // KY32_ctrl cu();
+  KY32_ctrl cu(aluc, pcsrc, regc, regrt1, mem2reg, shift, aluimm, jal, sext, memc, op, func3, func7, zr);
 
   // datapath
   KY32_dffe dff(pc, npc, clk, rst);
