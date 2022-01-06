@@ -1,0 +1,3 @@
+[submodule "kycc"]
+	path = kycc
+	url = git@github.com:lilanka/kycc.git
