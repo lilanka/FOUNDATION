@@ -1,3 +1,0 @@
-[submodule "kycc"]
-	path = kyvm
-	url = git@github.com:lilanka/kycc.git
