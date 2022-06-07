@@ -19,3 +19,10 @@ ALU has following operations.
 9. Division
 
 So $4$-bit control signal is applied to CPU.   
+
+# Memory Arrays
+Registers good for store small amount of data. Memory arrays are efficient way to store large amount of 
+data. The memory consists of,
+* DRAM
+* SRAM
+* ROM
