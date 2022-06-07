@@ -4,4 +4,4 @@ This is 32-bit RISCV based chip containing following modules.
 
 ## Log
 This is log of components currently available.
-* CPU - General purpose CPU is added.
+* CPU - Little-endian architecture.

@@ -1,6 +1,10 @@
 #!/bin/python3
-
 import sys
+
+def nop():
+  if (x1 == x2 == x3 == None):
+    #encode(0xb0)
+    pass
 
 def read_file(file):
   with open(file, 'r') as i:
@@ -15,37 +19,65 @@ def write_file(binary, file):
 def error(message):
   print(f'aV error: {message}')
 
+def is_label(line):
+  if ':' in line:
+    return True
+  return False
+
 def parse(line):
-  # parse a line into tokens
-  # [label:] [op [arg1[, arg2[, arg3]]]] [# comment]
+  # seperate label, opcode, register values, and comment from each line 
+  global label, op, x1, x2, x3, comment
+  label, op, x1, x2, x3, comment = None, None, None, None, None, None
 
   line = " ".join(line.split())
   for i, arg in enumerate(line):
-    if arg == "#": 
+    if (arg == "#"): 
       comment = line[i+1:].split()
       line = line[:i] 
       break
   line = line.split()
-  if len(line) == 0:
-    label, op, x1, x2, x3, comment = None, None, None, None, None, None
-  elif len(line) == 1:
-    label = line[0]
+
+  match len(line):
+    case 0: return None
+    case 1: 
+      if is_label(line[0]):
+        label = line[0]
+      else:
+        op = line[0]
+    case 2: op, x1 = line[0], line[1]
+    case 3:
+      if is_label(line[0]):
+        label, op, x1 = line[0], line[1], line[2]
+      else:
+        op, x1, x2 = line[0], line[1], line[2]
+    case 4:
+      if is_label(line[0]):
+        label, op, x1, x2 = line[0], line[1], line[2], line[3]
+      else:
+        op, x1, x2, x3 = line[0], line[1], line[2], line[3] 
+
+def process(number):
+  # check the validity of the line
+  if (label == op == x1 == x2 == x3 == None):  
+    return True;
+  if (op == 'NOP' or  op == 'nop'):
+    nop()
   else:
-    op = line[0]
-    x1 = line[1]
-    x2 = line[2]
-    if len(line) == 5:
-      x3 = line[4]
-def assemble(lines, file):
-  for line in lines:
+    error(f'Invalid command: {op} on line {number}')
+    return False
+
+  return True
+
+def assemble(lines, out_file):
+  for number, line in enumerate(lines):
     parse(line)
+    if (process(number)):
+      pass
+      
   #write_file(binary, file)
 
 if __name__ == '__main__':
   in_file = sys.argv[1]
-  try: 
-    out_file = sys.argv[2]
-    lines = read_file(in_file)
-    assemble(lines, out_file)
-  except IndexError:
-    print("Input the output file as: python3 input_file.py output_file")
+  out_file = sys.argv[2]
+  lines = read_file(in_file)
+  assemble(lines, out_file)
