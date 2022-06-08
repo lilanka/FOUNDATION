@@ -1,8 +1,6 @@
 ## Assembler
 An assembler for RISC-V. 
 
-![alt text](https://github.com/lilanka/kythera/tree/main/assembler/img/ss.png?raw=true)
-
 ### How to Use
 ```assembler.py``` file has everything you need.
 ```python3
