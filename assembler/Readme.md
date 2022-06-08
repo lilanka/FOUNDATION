@@ -1,14 +1,12 @@
-## aV
-
-aV is an assembler for RISC-V. This assembler 
-
-* Generate correct object code for all correct inputs.
-* Reject all incorrect inputs
-* Allow comments
-* Provide at least basic facilities. 
+## Assembler
+An assembler for RISC-V. 
 
 ## Use
-```av.py``` file has everything you need.
-```python
-python3 av.py out
+```assembler.py``` file has everything you need.
+```python3
+python3 assembler.py --i <assembly_file>  
+```
+Also
+```python3
+python3 assembler.py --i <assembly_file> --o <out_file.bin>
 ```

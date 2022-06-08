@@ -5,6 +5,10 @@ components of the chip.
 
 Here is all the technical documentation of the system.
 
+# Architecture
+## PC
+The program counter keeps track of current instruction and store memory address of current instruction.
+
 # CPU
 ## ALU
 ALU has following operations.
@@ -18,7 +22,7 @@ ALU has following operations.
 8. And others will be added.
 9. Division
 
-So $4$-bit control signal is applied to CPU.   
+There may be different $16$ operations. So it has $\log_2 16 = 4$-bit opcode.
 
 # Memory Arrays
 Registers good for store small amount of data. Memory arrays are efficient way to store large amount of 
