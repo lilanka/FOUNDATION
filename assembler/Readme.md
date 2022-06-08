@@ -6,12 +6,12 @@ An assembler for RISC-V.
 ```python3
 python3 assembler.py --i <assembly_file>  
 ```
-Also
+also
 ```python3
 python3 assembler.py --i <assembly_file> --o <out_file.bin>
 ```
 
 ### TODO
 * Only supports few instructions. Add other instructions.
-* Supports for $x_i$ based register naming. where $i = 0, 2, ..., 31$. Add register mapping which is more dynamic for user.  
-* Just list based search. Use an Hash Table for searching. 
+* Supports for x based register naming. Add register mapping which is more dynamic for user.  
+* Just list based search. Use a hash table for searching. 
