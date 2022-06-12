@@ -133,24 +133,15 @@ class Assembler(Encoder):
 
   def process(self, number):
     # check the validity of the line
-    if (self.label == self.op == \
-      self.rd == self.r1 == self.r2 == None):  
+    if (self.op == None):  
       return False;
 
     elif ((self.op == 'NOP' or  self.op == 'nop') and \
        (self.rd == self.r1 == self.r2 == None)):
       return True 
   
-    elif ((self.op == 'ADD' or self.op == 'add') and \
-      (self.rd != None and self.r1 != None and self.r2 != None)):
-      return True
-
-    elif ((self.op == 'SUB' or self.op == 'sub') and \
-      (self.rd != None and self.r1 != None and self.r2 != None)):
-      return True
-    
-    elif ((self.op == 'ADDI' or self.op == 'addi') and \
-      (self.rd != None and self.r1 != None and self.r2 != None)):
+    # R instruction validation
+    elif (self.op.lower() in r_instr and self.rd != None and self.r1 != None and self.r2 != None):
       return True
 
     return False 
@@ -169,7 +160,7 @@ if __name__ == '__main__':
   # take arguments
   parser = argparse.ArgumentParser(description="Assembler")
   parser.add_argument("--i", type=str)
-  parser.add_argument("--o", type=str, default="out.bin")
+  parser.add_argument("--o", type=str, default="output/out.bin")
   args = parser.parse_args()
 
   lines = read_file(args.i)
